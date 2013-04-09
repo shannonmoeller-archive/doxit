@@ -25,6 +25,6 @@
       "workit": "*"
   },
   "scripts": {
-    "test": "cd test && ../bin/doxit -c docit.config.js && workit docs"
+    "test": "cd test && ../bin/doxit -c doxit.config.js && workit docs"
   }
 }
