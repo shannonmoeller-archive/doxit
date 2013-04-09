@@ -1,4 +1,4 @@
-docit test
+doxit test
 ==========
 
-If you're reading this, `docit` did it's job.
+If you're reading this, `doxit` did it's job.

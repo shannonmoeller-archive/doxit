@@ -1,4 +1,4 @@
-docit
+doxit
 =====
 
 The stupid documentation generator.
@@ -10,12 +10,12 @@ Installation
 
 Via [npm][npm]:
 
-    $ npm install -g docit
+    $ npm install -g doxit
 
 Usage
 -----
 
-    Usage: docit [options] <file|dir ...>
+    Usage: doxit [options] <file|dir ...>
 
     Options:
 
