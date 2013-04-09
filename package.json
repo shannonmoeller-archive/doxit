@@ -1,0 +1,30 @@
+{
+  "name": "docit",
+  "version": "1.0.0",
+  "description": "The stupid JavaScript documentation generator.",
+  "keywords": ["docblock", "documenation", "jsdoc", "jsdoc3", "jsdoc-toolkit", "markdown"],
+  "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
+  "main": "src/docit.js",
+  "bin": "./bin/docit",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/shannonmoeller/docit.git"
+  },
+  "dependencies": {
+    "commander": "*",
+    "copier": "*",
+    "dox": "*",
+    "glob": "*",
+    "marked": "*",
+    "jade": "*",
+    "mkdirp": "*",
+    "q": "*",
+    "walkdir": "*"
+  },
+  "devDependencies": {
+      "workit": "*"
+  },
+  "scripts": {
+    "test": "./bin/docit -c test/docit.config.js && workit docs"
+  }
+}

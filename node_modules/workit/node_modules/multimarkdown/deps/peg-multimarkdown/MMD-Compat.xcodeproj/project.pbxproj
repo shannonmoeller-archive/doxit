@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		65F0B8EA13DF714E00D0980C /* Run Tests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 65F0B8ED13DF716D00D0980C /* Build configuration list for PBXAggregateTarget "Run Tests" */;
+			buildPhases = (
+				65F0B8E913DF714E00D0980C /* Run Tests */,
+			);
+			dependencies = (
+				65F0B8FD13DF724D00D0980C /* PBXTargetDependency */,
+			);
+			name = "Run Tests";
+			productName = "MultiMarkdown Tests";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		5A5A905C13E89C0F0079162B /* GLibFacade.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A5A905B13E89C0F0079162B /* GLibFacade.c */; };
+		65F0B69B13DF47CC00D0980C /* markdown_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 65F0B66113DF47CC00D0980C /* markdown_lib.c */; };
+		65F0B69C13DF47CC00D0980C /* markdown_output.c in Sources */ = {isa = PBXBuildFile; fileRef = 65F0B66313DF47CC00D0980C /* markdown_output.c */; };
+		65F0B69E13DF47CC00D0980C /* markdown.c in Sources */ = {isa = PBXBuildFile; fileRef = 65F0B66713DF47CC00D0980C /* markdown.c */; };
+		65F0B7B713DF5BEF00D0980C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F0B7B613DF5BEF00D0980C /* Foundation.framework */; };
+		65F0B8B213DF6D4000D0980C /* markdown_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 65F0B8B113DF6D4000D0980C /* markdown_parser.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		65F0B88B13DF6C1200D0980C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65F0B88813DF6C0D00D0980C;
+			remoteInfo = Peg;
+		};
+		65F0B8FC13DF724D00D0980C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DD76FA90486AB0100D96B5E;
+			remoteInfo = MultiMarkdown;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76FAF0486AB0100D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5A5A905A13E89C0F0079162B /* GLibFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLibFacade.h; sourceTree = "<group>"; };
+		5A5A905B13E89C0F0079162B /* GLibFacade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLibFacade.c; sourceTree = "<group>"; };
+		65F0B66113DF47CC00D0980C /* markdown_lib.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = markdown_lib.c; sourceTree = "<group>"; };
+		65F0B66213DF47CC00D0980C /* markdown_lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = markdown_lib.h; sourceTree = "<group>"; };
+		65F0B66313DF47CC00D0980C /* markdown_output.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = markdown_output.c; sourceTree = "<group>"; };
+		65F0B66513DF47CC00D0980C /* markdown_parser.leg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = markdown_parser.leg; sourceTree = "<group>"; };
+		65F0B66613DF47CC00D0980C /* markdown_peg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = markdown_peg.h; sourceTree = "<group>"; };
+		65F0B66713DF47CC00D0980C /* markdown.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = markdown.c; sourceTree = "<group>"; };
+		65F0B66813DF47CC00D0980C /* odf.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = odf.c; sourceTree = "<group>"; };
+		65F0B66913DF47CC00D0980C /* odf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = odf.h; sourceTree = "<group>"; };
+		65F0B66A13DF47CC00D0980C /* parsing_functions.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = parsing_functions.c; sourceTree = "<group>"; };
+		65F0B66C13DF47CC00D0980C /* compile.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = compile.c; sourceTree = "<group>"; };
+		65F0B68B13DF47CC00D0980C /* leg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = leg; sourceTree = "<group>"; };
+		65F0B68C13DF47CC00D0980C /* leg.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = leg.c; sourceTree = "<group>"; };
+		65F0B68D13DF47CC00D0980C /* leg.leg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = leg.leg; sourceTree = "<group>"; };
+		65F0B68F13DF47CC00D0980C /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		65F0B69013DF47CC00D0980C /* peg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = peg; sourceTree = "<group>"; };
+		65F0B69113DF47CC00D0980C /* peg.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = peg.1; sourceTree = "<group>"; };
+		65F0B69213DF47CC00D0980C /* peg.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = peg.c; sourceTree = "<group>"; };
+		65F0B69413DF47CC00D0980C /* peg.peg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = peg.peg; sourceTree = "<group>"; };
+		65F0B69513DF47CC00D0980C /* peg.peg-c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "peg.peg-c"; sourceTree = "<group>"; };
+		65F0B69613DF47CC00D0980C /* tree.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = tree.c; sourceTree = "<group>"; };
+		65F0B69713DF47CC00D0980C /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree.h; sourceTree = "<group>"; };
+		65F0B69913DF47CC00D0980C /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		65F0B69A13DF47CC00D0980C /* utility_functions.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = utility_functions.c; sourceTree = "<group>"; };
+		65F0B6C513DF485F00D0980C /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		65F0B6D713DF4C6B00D0980C /* MarkdownMacPrefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkdownMacPrefix.h; sourceTree = "<group>"; };
+		65F0B6F313DF4D9800D0980C /* glib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glib.h; sourceTree = "<group>"; };
+		65F0B7B613DF5BEF00D0980C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		65F0B8B113DF6D4000D0980C /* markdown_parser.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = markdown_parser.c; sourceTree = "<group>"; };
+		8DD76FB20486AB0100D96B5E /* multimarkdown */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = multimarkdown; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76FAD0486AB0100D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65F0B7B713DF5BEF00D0980C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* MultiMarkdown */ = {
+			isa = PBXGroup;
+			children = (
+				65F0B6D713DF4C6B00D0980C /* MarkdownMacPrefix.h */,
+				5A5A905A13E89C0F0079162B /* GLibFacade.h */,
+				5A5A905B13E89C0F0079162B /* GLibFacade.c */,
+				65F0B6F313DF4D9800D0980C /* glib.h */,
+				65F0B8B513DF6D4700D0980C /* Generated Sources */,
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C6A0FF2B0290797F04C91782 /* Documentation */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+				65F0B7B613DF5BEF00D0980C /* Foundation.framework */,
+			);
+			name = MultiMarkdown;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				65F0B6C513DF485F00D0980C /* Makefile */,
+				65F0B66113DF47CC00D0980C /* markdown_lib.c */,
+				65F0B66213DF47CC00D0980C /* markdown_lib.h */,
+				65F0B66313DF47CC00D0980C /* markdown_output.c */,
+				65F0B66513DF47CC00D0980C /* markdown_parser.leg */,
+				65F0B66613DF47CC00D0980C /* markdown_peg.h */,
+				65F0B66713DF47CC00D0980C /* markdown.c */,
+				65F0B66813DF47CC00D0980C /* odf.c */,
+				65F0B66913DF47CC00D0980C /* odf.h */,
+				65F0B66A13DF47CC00D0980C /* parsing_functions.c */,
+				65F0B66B13DF47CC00D0980C /* peg-0.1.4 */,
+				65F0B69A13DF47CC00D0980C /* utility_functions.c */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FB20486AB0100D96B5E /* multimarkdown */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65F0B66B13DF47CC00D0980C /* peg-0.1.4 */ = {
+			isa = PBXGroup;
+			children = (
+				65F0B66C13DF47CC00D0980C /* compile.c */,
+				65F0B68B13DF47CC00D0980C /* leg */,
+				65F0B68C13DF47CC00D0980C /* leg.c */,
+				65F0B68D13DF47CC00D0980C /* leg.leg */,
+				65F0B68F13DF47CC00D0980C /* Makefile */,
+				65F0B69013DF47CC00D0980C /* peg */,
+				65F0B69113DF47CC00D0980C /* peg.1 */,
+				65F0B69213DF47CC00D0980C /* peg.c */,
+				65F0B69413DF47CC00D0980C /* peg.peg */,
+				65F0B69513DF47CC00D0980C /* peg.peg-c */,
+				65F0B69613DF47CC00D0980C /* tree.c */,
+				65F0B69713DF47CC00D0980C /* tree.h */,
+				65F0B69913DF47CC00D0980C /* version.h */,
+			);
+			path = "peg-0.1.4";
+			sourceTree = "<group>";
+		};
+		65F0B8B513DF6D4700D0980C /* Generated Sources */ = {
+			isa = PBXGroup;
+			children = (
+				65F0B8B113DF6D4000D0980C /* markdown_parser.c */,
+			);
+			name = "Generated Sources";
+			sourceTree = "<group>";
+		};
+		C6A0FF2B0290797F04C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		65F0B88813DF6C0D00D0980C /* Peg */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 65F0B88F13DF6C3E00D0980C /* Build configuration list for PBXLegacyTarget "Peg" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "./peg-0.1.4";
+			dependencies = (
+			);
+			name = Peg;
+			passBuildSettingsInEnvironment = 1;
+			productName = Peg;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		8DD76FA90486AB0100D96B5E /* MultiMarkdown */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "MultiMarkdown" */;
+			buildPhases = (
+				65F0B88113DF6B3100D0980C /* Generate Parser */,
+				8DD76FAB0486AB0100D96B5E /* Sources */,
+				8DD76FAD0486AB0100D96B5E /* Frameworks */,
+				8DD76FAF0486AB0100D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65F0B88C13DF6C1200D0980C /* PBXTargetDependency */,
+			);
+			name = MultiMarkdown;
+			productInstallPath = "$(HOME)/bin";
+			productName = MultiMarkdown;
+			productReference = 8DD76FB20486AB0100D96B5E /* multimarkdown */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "MMD-Compat" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* MultiMarkdown */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DD76FA90486AB0100D96B5E /* MultiMarkdown */,
+				65F0B88813DF6C0D00D0980C /* Peg */,
+				65F0B8EA13DF714E00D0980C /* Run Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		65F0B88113DF6B3100D0980C /* Generate Parser */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Parser";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./peg-0.1.4/leg -o markdown_parser.c markdown_parser.leg";
+		};
+		65F0B8E913DF714E00D0980C /* Run Tests */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Tests";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here\ncd ${PROJECT_DIR}/MarkdownTest\n\n# Basic Markdown Tests\n./MarkdownTest.pl --Script=\"${BUILT_PRODUCTS_DIR}/MultiMarkdown\" --testdir=\"${PROJECT_DIR}/MarkdownTest/Tests\"\n\n# MultiMarkdown extensions\n./MarkdownTest.pl --Script=\"${BUILT_PRODUCTS_DIR}/MultiMarkdown\" --testdir=\"${PROJECT_DIR}/MarkdownTest/MultiMarkdownTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76FAB0486AB0100D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65F0B69B13DF47CC00D0980C /* markdown_lib.c in Sources */,
+				65F0B69C13DF47CC00D0980C /* markdown_output.c in Sources */,
+				65F0B69E13DF47CC00D0980C /* markdown.c in Sources */,
+				65F0B8B213DF6D4000D0980C /* markdown_parser.c in Sources */,
+				5A5A905C13E89C0F0079162B /* GLibFacade.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65F0B88C13DF6C1200D0980C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65F0B88813DF6C0D00D0980C /* Peg */;
+			targetProxy = 65F0B88B13DF6C1200D0980C /* PBXContainerItemProxy */;
+		};
+		65F0B8FD13DF724D00D0980C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DD76FA90486AB0100D96B5E /* MultiMarkdown */;
+			targetProxy = 65F0B8FC13DF724D00D0980C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB928608733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					i386,
+					x86_64,
+				);
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = MarkdownMacPrefix.h;
+				HEADER_SEARCH_PATHS = .;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/MultiMarkdown.build/Release/libMultiMarkdown.build/Objects-normal/i386\"",
+					"\"$(SRCROOT)/build/MultiMarkdown.build/Release/libMultiMarkdown.build/Objects-normal/ppc\"",
+					"\"$(SRCROOT)/build/MultiMarkdown.build/Release/libMultiMarkdown.build/Objects-normal/x86_64\"",
+					"\"$(SRCROOT)/build/Release\"",
+				);
+				OTHER_CFLAGS = "-DSTANDALONE_MAC_VERSION=1";
+				PRODUCT_NAME = multimarkdown;
+			};
+			name = Debug;
+		};
+		1DEB928708733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					ppc,
+					i386,
+					x86_64,
+				);
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PREFIX_HEADER = MarkdownMacPrefix.h;
+				HEADER_SEARCH_PATHS = .;
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/MultiMarkdown.build/Release/libMultiMarkdown.build/Objects-normal/i386\"",
+					"\"$(SRCROOT)/build/MultiMarkdown.build/Release/libMultiMarkdown.build/Objects-normal/ppc\"",
+					"\"$(SRCROOT)/build/MultiMarkdown.build/Release/libMultiMarkdown.build/Objects-normal/x86_64\"",
+					"\"$(SRCROOT)/build/Release\"",
+				);
+				"MACOSX_DEPLOYMENT_TARGET[arch=x86_64]" = 10.6;
+				OTHER_CFLAGS = "-DSTANDALONE_MAC_VERSION=1";
+				PRODUCT_NAME = multimarkdown;
+			};
+			name = Release;
+		};
+		1DEB928A08733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+					x86_64,
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB928B08733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+					x86_64,
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		65F0B88913DF6C0D00D0980C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Peg;
+			};
+			name = Debug;
+		};
+		65F0B88A13DF6C0D00D0980C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Peg;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		65F0B8EB13DF714F00D0980C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "MultiMarkdown Tests";
+			};
+			name = Debug;
+		};
+		65F0B8EC13DF714F00D0980C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "MultiMarkdown Tests";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "MultiMarkdown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928608733DD80010E9CD /* Debug */,
+				1DEB928708733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "MMD-Compat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928A08733DD80010E9CD /* Debug */,
+				1DEB928B08733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65F0B88F13DF6C3E00D0980C /* Build configuration list for PBXLegacyTarget "Peg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65F0B88913DF6C0D00D0980C /* Debug */,
+				65F0B88A13DF6C0D00D0980C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65F0B8ED13DF716D00D0980C /* Build configuration list for PBXAggregateTarget "Run Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65F0B8EB13DF714F00D0980C /* Debug */,
+				65F0B8EC13DF714F00D0980C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

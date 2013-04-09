@@ -1,0 +1,153 @@
+extends layout
+
+block head
+  style
+    body { padding-top: 1em; }
+    pre code { font-size: .8em; }
+    table { width: 100%; }
+    td, th { vertical-align: top; }
+    th { text-align: left; }
+    .top-bar { margin-bottom: 0; }
+    .row { max-width: none }
+    .flex { position: relative; }
+    .flex > .columns { position: static; }
+    .flex > * + *:before {
+      content: " ";
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: -1;
+      height: 100%;
+      width: 50%;
+      background: #f5f2f0;
+    }
+    .side-nav {
+      padding-top: 3em;
+    }
+    .side-nav a {
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .side-nav a.isCurrent {
+      color: inherit;
+      font-weight: bold;
+    }
+    .docblock-hd {
+      padding-top: 3em;
+    }
+    .code {
+      padding-top: 2em;
+    }
+
+block body
+  base = meta.relative.replace(/[^\/]+/g, '..').replace(/\.\.$/, '')
+
+  .fixed
+    nav.top-bar(aria-label="Page Navigation")
+      ul.title-area
+        li.name
+          h1
+            a(href="#{base}", rel="home") #{title}
+        li.toggle-topbar.menu-icon
+          a(href="#")
+            span Menu
+
+      section.top-bar-section
+        ul.right
+          li(class="has-dropdown")
+            a(href="#{base}#{meta.relative}.html") #{meta.relative}
+            if typeof data !== 'string'
+              ul.dropdown
+                each comment in data
+                  mixin navItem(comment)
+
+  .row
+    .large-10.push-2.columns
+      if typeof data === 'string'
+        mixin markdown(data)
+      else
+        each comment in data
+          mixin jsdoc(comment)
+
+    .large-2.pull-10.columns
+      nav(aria-label="Codebase Navigation")
+        ul.side-nav
+          each file in files
+            li
+              if file.relative === meta.relative
+                a(href="#{base}#{file.relative}.html", class="isCurrent") #{file.relative}
+              else
+                a(href="#{base}#{file.relative}.html") #{file.relative}
+
+mixin navItem(comment)
+  if comment.ctx
+    li
+      a(href="##{comment.ctx.string.replace(/[^\w\d]/g, '-')}") #{comment.ctx.name}
+        if /function|method/.test(comment.ctx.type)
+          span(aria-hidden="true") &nbsp;(&nbsp;)
+          span.label.radius.right #{comment.ctx.type}
+        else if /declaration|property/.test(comment.ctx.type)
+          span.label.radius.right.success #{comment.ctx.type}
+        else
+          span.label.radius.right.secondary #{comment.ctx.type}
+
+mixin markdown(data)
+  .row.flex
+    .large-6.columns
+      .docblock
+        .docblock-hd !{data}
+
+mixin jsdoc(comment)
+  .row.flex
+    .large-6.columns
+      if !/^<p>(lobal|s[hl]int)/.test(comment.description.full)
+        id = comment.ctx && comment.ctx.string.replace(/[^\w\d]/g, '-')
+        .docblock(id="#{id}")
+          .docblock-hd
+            if comment.ctx
+              h4 #{comment.ctx.name}
+                if /function|method/.test(comment.ctx.type)
+                  span(aria-hidden="true") &nbsp;(&nbsp;)
+                  span.label.radius.right #{comment.ctx.type}
+                else if /declaration|property/.test(comment.ctx.type)
+                  span.label.radius.right.success #{comment.ctx.type}
+                else
+                  span.label.radius.right.secondary #{comment.ctx.type}
+
+            .summary !{comment.description.summary.replace(/\<br \/\>/g, ' ')}
+
+          .docblock-bd
+            if comment.tags && comment.tags.length
+              table.tags
+                each tag in comment.tags
+                  tr.tag
+                    th
+                      b #{tag.type}
+
+                    if tag.types
+                      td
+                        span.label.radius.secondary #{tag.types.join(',')}
+
+                      td
+                        code #{tag.name}
+
+                      td #{tag.description || tag.otherClass || tag.string}
+
+                    else
+                      td(colspan="3")
+                        if tag.type === 'augments'
+                          other = tag.otherClass.replace(/^[^:]+:/, '')
+                          a(href="#{base}#{other}.js") #{other}
+                        else
+                          | #{tag.description || tag.otherClass || tag.visibility || tag.string}
+
+          .description !{comment.description.body.replace(/\<br \/\>/g, ' ')}
+
+    .large-6.columns
+      if comment.code
+        .code
+          pre
+            code.language-javascript #{comment.code}
