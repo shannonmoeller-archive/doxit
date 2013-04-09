@@ -8,6 +8,5 @@
  */
 
 ({
-    input: ['test'],
-    index: 'test/README.md'
+    index: 'README.md'
 })

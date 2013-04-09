@@ -9,6 +9,8 @@ lib-cov
 
 pids
 logs
+node_modules
 results
+test/docs
 
 npm-debug.log
