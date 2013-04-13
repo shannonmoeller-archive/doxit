@@ -21,6 +21,7 @@
     </style>
     <style>
       body { padding-top: 1em; }
+      pre { margin-bottom: 1.25em; }
       pre code { font-size: .8em; }
       table { width: 100%; }
       td, th { vertical-align: top; }
@@ -85,7 +86,7 @@
           <div class="large-8 columns">
             <div class="docblock">
               <div class="docblock-hd"><h1>doxit</h1>
-<p>The stupid documentation generator.</p>
+<p>The stupid JavaScript documentation generator.</p>
 <p>Built with <a href="https://github.com/visionmedia/dox">dox</a>, <a href="https://github.com/visionmedia/jade">jade</a>, <a href="https://github.com/zurb/foundation">Foundation</a>, and <a href="https://github.com/LeaVerou/prism">Prism</a>.</p>
 <h2>Installation</h2>
 <p>Via <a href="http://npmjs.org/">npm</a>:</p>
@@ -105,7 +106,15 @@ Options:
   -o, --output [dir]          output directory [./docs]
   -t, --title [string]        title of the documentation [Documentation]
   -T, --template [file]       jade template to use</code></pre>
+<h2>Test</h2>
+<pre><code>$ npm install -d
+$ npm test</code></pre>
+<p>Starts a server which hosts the generated test documentation at <a href="http://localhost:3000">http://localhost:3000</a>.</p>
 <h2>Change Log</h2>
+<h3>1.1.1</h3>
+<ul>
+<li>Better abstraction for long-term maintainability. Moved file globbing from cli to core to make JavaScript api more useful.</li>
+</ul>
 <h3>1.1.0</h3>
 <ul>
 <li>Reworked internals. Modified options and api.</li>
