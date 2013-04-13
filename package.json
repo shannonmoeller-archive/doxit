@@ -1,6 +1,6 @@
 {
   "name": "doxit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The stupid JavaScript documentation generator.",
   "keywords": ["docblock", "documenation", "jsdoc", "jsdoc3", "jsdoc-toolkit", "markdown"],
   "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
@@ -17,14 +17,12 @@
     "glob": "*",
     "marked": "*",
     "jade": "*",
-    "mkdirp": "*",
-    "q": "*",
-    "walkdir": "*"
+    "mkdirp": "*"
   },
   "devDependencies": {
-      "workit": "*"
+    "workit": "*"
   },
   "scripts": {
-    "test": "cd test && ../bin/doxit -c doxit.config.js && workit docs"
+    "test": "rm -rf docs && ./bin/doxit -c test/doxit.config.js && workit docs"
   }
 }

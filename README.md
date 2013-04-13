@@ -15,23 +15,26 @@ Via [npm][npm]:
 Usage
 -----
 
-    Usage: doxit [options] <file|dir ...>
+    Usage: doxit [options] (glob ...)
 
     Options:
 
-      -h, --help                    output usage information
-      -V, --version                 output the version number
-      -c, --config [file]           a javascript or json file containing options to use
-      -d, --ignore-dirs [pattern]   regular expression matching directories to ignore [.git, .svn, node_modules]
-      -e, --extensions [pattern]    regular expression matching the extensions of files to document [.coffee, .js, .md]
-      -f, --ignore-files [pattern]  regular expression matching files to ignore [~*, _*, .*]
-      -I, --index [file]            which file to treat as the default
-      -o, --output [dir]            output directory [./docs]
-      -t, --title [string]          title of the documentation [Documentation]
-      -T, --template [file]         jade template to use
+      -h, --help                  output usage information
+      -V, --version               output the version number
+      -c, --config [file]         a javascript or json file containing options to use
+      -d, --ignore-dirs [regex]   regular expression matching directories to ignore [\.git|\.svn|node_modules]
+      -f, --ignore-files [regex]  regular expression matching files to ignore [^_|^\.|~$]
+      -i, --input [glob]          comma-separated list of glob patterns matching files and directories to document
+      -I, --index [file]          which file to treat as the default
+      -o, --output [dir]          output directory [./docs]
+      -t, --title [string]        title of the documentation [Documentation]
+      -T, --template [file]       jade template to use
 
 Change Log
 ----------
+
+### 1.1.0
+- Reworked internals. Modified options and api.
 
 ### 1.0.0
 - Initial implementation.

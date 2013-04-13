@@ -43,60 +43,58 @@ block head
     }
 
 block body
-  base = meta.relative.replace(/[^\/]+/g, '..').replace(/\.\.$/, '')
-
   .fixed
     nav.top-bar(aria-label="Page Navigation")
       ul.title-area
+
         li.name
           h1
-            a(href="#{base}", rel="home") #{title}
+            a(href="#{base}", rel="home")
+              span #{title}
+
         li.toggle-topbar.menu-icon
           a(href="#")
             span Menu
 
       section.top-bar-section
         ul.right
-          li(class="has-dropdown")
-            a(href="#{base}#{meta.relative}.html") #{meta.relative}
-            if typeof data !== 'string'
+          li.has-dropdown
+            a(href="#{base}#{meta.originalPath}.html")
+              span #{meta.originalPath}
+
+            if meta.extension === '.js'
               ul.dropdown
-                each comment in data
-                  mixin navItem(comment)
+                each comment in meta.data
+                  if comment.ctx
+                    id = comment.ctx && comment.ctx.string.replace(/[^\w\d]+/g, '-')
+
+                    li
+                      a(href="##{id}")
+                        span #{comment.ctx.name}
+                        mixin type(comment.ctx.type)
 
   .row
     .large-10.push-2.columns
-      if typeof data === 'string'
-        mixin markdown(data)
-      else
-        each comment in data
+      if meta.extension === '.js'
+        each comment in meta.data
           mixin jsdoc(comment)
+
+      if /.html|.md/.test(meta.extension)
+        mixin html(meta.data)
 
     .large-2.pull-10.columns
       nav(aria-label="Codebase Navigation")
         ul.side-nav
           each file in files
             li
-              if file.relative === meta.relative
-                a(href="#{base}#{file.relative}.html", class="isCurrent") #{file.relative}
+              if file.originalPath === meta.originalPath
+                a(href="#{base}#{file.originalPath}.html", class="isCurrent") #{file.originalPath}
               else
-                a(href="#{base}#{file.relative}.html") #{file.relative}
+                a(href="#{base}#{file.originalPath}.html") #{file.originalPath}
 
-mixin navItem(comment)
-  if comment.ctx
-    li
-      a(href="##{comment.ctx.string.replace(/[^\w\d]/g, '-')}") #{comment.ctx.name}
-        if /function|method/.test(comment.ctx.type)
-          span(aria-hidden="true") &nbsp;(&nbsp;)
-          span.label.radius.right #{comment.ctx.type}
-        else if /declaration|property/.test(comment.ctx.type)
-          span.label.radius.right.success #{comment.ctx.type}
-        else
-          span.label.radius.right.secondary #{comment.ctx.type}
-
-mixin markdown(data)
+mixin html(data)
   .row.flex
-    .large-6.columns
+    .large-8.columns
       .docblock
         .docblock-hd !{data}
 
@@ -104,18 +102,14 @@ mixin jsdoc(comment)
   .row.flex
     .large-6.columns
       if !/^<p>(lobal|s[hl]int)/.test(comment.description.full)
-        id = comment.ctx && comment.ctx.string.replace(/[^\w\d]/g, '-')
+        id = comment.ctx && comment.ctx.string.replace(/[^\w\d]+/g, '-')
+
         .docblock(id="#{id}")
           .docblock-hd
             if comment.ctx
-              h4 #{comment.ctx.name}
-                if /function|method/.test(comment.ctx.type)
-                  span(aria-hidden="true") &nbsp;(&nbsp;)
-                  span.label.radius.right #{comment.ctx.type}
-                else if /declaration|property/.test(comment.ctx.type)
-                  span.label.radius.right.success #{comment.ctx.type}
-                else
-                  span.label.radius.right.secondary #{comment.ctx.type}
+              h4
+                span #{comment.ctx.name}
+                mixin type(comment.ctx.type)
 
             .summary !{comment.description.summary.replace(/\<br \/\>/g, ' ')}
 
@@ -140,7 +134,8 @@ mixin jsdoc(comment)
                       td(colspan="3")
                         if tag.type === 'augments'
                           other = tag.otherClass.replace(/^[^:]+:/, '')
-                          a(href="#{base}#{other}.js") #{other}
+
+                          a(href="#{base}#{other}#{meta.extension}.html") #{other}
                         else
                           | #{tag.description || tag.otherClass || tag.visibility || tag.string}
 
@@ -151,3 +146,16 @@ mixin jsdoc(comment)
         .code
           pre
             code.language-javascript #{comment.code}
+
+mixin type(type)
+  if /function|method/.test(type)
+    span(aria-hidden="true") &nbsp;(&nbsp;)
+
+  | &nbsp;
+
+  if /function|method/.test(type)
+    span.label.radius.right #{type}
+  else if /declaration|property/.test(type)
+    span.label.radius.right.success #{type}
+  else
+    span.label.radius.right.secondary #{type}

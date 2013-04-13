@@ -1,3 +1,4 @@
+/*jshint asi: true, expr: true, indent: 4 */
 /**
  * Test Configuration
  *
@@ -8,5 +9,10 @@
  */
 
 ({
-    index: 'README.md'
+    index: 'README.md',
+    input: [
+        '\*.md',
+        'lib/\*\*/\*.js',
+        'test/\*\*/\*.{js,md,html}'
+    ]
 })
