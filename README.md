@@ -1,7 +1,7 @@
 doxit
 =====
 
-The stupid documentation generator.
+The stupid JavaScript documentation generator.
 
 Built with [dox][dox], [jade][jad], [Foundation][fdn], and [Prism][psm].
 
@@ -30,8 +30,19 @@ Usage
       -t, --title [string]        title of the documentation [Documentation]
       -T, --template [file]       jade template to use
 
+Test
+----
+
+    $ npm install -d
+    $ npm test
+
+Starts a server which hosts the generated test documentation at http://localhost:3000.
+
 Change Log
 ----------
+
+### 1.1.1
+- Better abstraction for long-term maintainability. Moved file globbing from cli to core to make JavaScript api more useful.
 
 ### 1.1.0
 - Reworked internals. Modified options and api.

@@ -9,7 +9,7 @@
  */
 
 ({
-    index: 'README.md',
+    index: 'test/README.md',
     input: [
         '\*.md',
         'lib/\*\*/\*.js',

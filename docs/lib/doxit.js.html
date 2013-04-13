@@ -21,6 +21,7 @@
     </style>
     <style>
       body { padding-top: 1em; }
+      pre { margin-bottom: 1.25em; }
       pre code { font-size: .8em; }
       table { width: 100%; }
       td, th { vertical-align: top; }
@@ -76,10 +77,14 @@
             <li class="has-dropdown"><a href="../lib/doxit.js.html"><span>lib/doxit.js</span></a>
               <ul class="dropdown">
                 <li><a href="#matchDir"><span>matchDir</span>&nbsp;<span class="label radius right success">declaration</span></a></li>
-                <li><a href="#ignore-"><span>ignore</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
                 <li><a href="#parseFile-"><span>parseFile</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
-                <li><a href="#parseTemplate-"><span>parseTemplate</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
-                <li><a href="#module-exports-"><span>exports</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">method</span></a></li>
+                <li><a href="#reduceGlob-"><span>reduceGlob</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
+                <li><a href="#makeFilter-"><span>makeFilter</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
+                <li><a href="#makeRenderer-"><span>makeRenderer</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
+                <li><a href="#makeWriter-"><span>makeWriter</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
+                <li><a href="#makeHandler-"><span>makeHandler</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
+                <li><a href="#doxit-"><span>doxit</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span></a></li>
+                <li><a href="#module-exports"><span>exports</span>&nbsp;<span class="label radius right success">property</span></a></li>
               </ul>
             </li>
           </ul>
@@ -98,10 +103,15 @@
           <div class="large-6 columns">
             <div id="undefined" class="docblock">
               <div class="docblock-hd">
-                <div class="summary"><p>The stupid documentation generator.</p></div>
+                <div class="summary"><p>The stupid JavaScript documentation generator.</p></div>
               </div>
               <div class="docblock-bd">
                 <table class="tags">
+                  <tr class="tag">
+                    <th><b>module</b></th>
+                    <td colspan="3">doxit
+                    </td>
+                  </tr>
                   <tr class="tag">
                     <th><b>author</b></th>
                     <td colspan="3">Shannon Moeller &lt;me@shannonmoeller.com&gt;
@@ -109,7 +119,7 @@
                   </tr>
                   <tr class="tag">
                     <th><b>version</b></th>
-                    <td colspan="3">1.1.0
+                    <td colspan="3">1.1.1
                     </td>
                   </tr>
                 </table>
@@ -124,10 +134,12 @@
 // Modules
 var dox = require('dox');
 var fs = require('fs');
+var glob = require('glob');
 var jade = require('jade');
 var markdown = require('marked');
 var mkdirp = require('mkdirp');
-var path = require('path');</code></pre>
+var path = require('path');
+var util = require('util');</code></pre>
             </div>
           </div>
         </div>
@@ -137,7 +149,7 @@ var path = require('path');</code></pre>
               <div class="docblock-hd">
                 <h4><span>matchDir</span>&nbsp;<span class="label radius right success">declaration</span>
                 </h4>
-                <div class="summary"><p>Matches directory names. Useful for generating relative paths.</p></div>
+                <div class="summary"><p>Matches directory names. Useful for generating platform-agnostic relative paths.</p></div>
               </div>
               <div class="docblock-bd">
                 <table class="tags">
@@ -160,64 +172,25 @@ var path = require('path');</code></pre>
         </div>
         <div class="row flex">
           <div class="large-6 columns">
-            <div id="ignore-" class="docblock">
-              <div class="docblock-hd">
-                <h4><span>ignore</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
-                </h4>
-                <div class="summary"><p>Generates a filter method based on ignore options.</p></div>
-              </div>
-              <div class="docblock-bd">
-                <table class="tags">
-                  <tr class="tag">
-                    <th><b>param</b></th>
-                    <td><span class="label radius secondary">Array.&lt;String&gt;</span></td>
-                    <td><code>files</code></td>
-                    <td></td>
-                  </tr>
-                  <tr class="tag">
-                    <th><b>returns</b></th>
-                    <td colspan="3">{Function(String):Boolean}
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div class="description"></div>
-            </div>
-          </div>
-          <div class="large-6 columns">
-            <div class="code">
-              <pre><code class="language-javascript">var ignore = function (options) {
-    var ignoreDirs = options.ignoreDirs;
-    var ignoreFiles = options.ignoreFiles;
-
-    return function (item) {
-        return !ignoreDirs.test(path.dirname(item)) &amp;&amp;
-               !ignoreFiles.test(path.basename(item));
-    };
-};</code></pre>
-            </div>
-          </div>
-        </div>
-        <div class="row flex">
-          <div class="large-6 columns">
             <div id="parseFile-" class="docblock">
               <div class="docblock-hd">
                 <h4><span>parseFile</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
                 </h4>
-                <div class="summary"><p>Parses a file and compiles dox.</p></div>
+                <div class="summary"><p>Parses a file, compiles dox or markdown, and returns metadata.</p></div>
               </div>
               <div class="docblock-bd">
                 <table class="tags">
                   <tr class="tag">
                     <th><b>param</b></th>
-                    <td><span class="label radius secondary">Array.&lt;String&gt;</span></td>
-                    <td><code>files</code></td>
+                    <td><span class="label radius secondary">String</span></td>
+                    <td><code>file</code></td>
                     <td></td>
                   </tr>
                   <tr class="tag">
-                    <th><b>returns</b></th>
-                    <td colspan="3">{Object}
-                    </td>
+                    <th><b>return</b></th>
+                    <td><span class="label radius secondary">Object</span></td>
+                    <td><code></code></td>
+                    <td></td>
                   </tr>
                 </table>
               </div>
@@ -254,11 +227,93 @@ var path = require('path');</code></pre>
         </div>
         <div class="row flex">
           <div class="large-6 columns">
-            <div id="parseTemplate-" class="docblock">
+            <div id="reduceGlob-" class="docblock">
               <div class="docblock-hd">
-                <h4><span>parseTemplate</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
+                <h4><span>reduceGlob</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
                 </h4>
-                <div class="summary"><p>Parses a jade template and returns a render method.</p></div>
+                <div class="summary"><p>Glob a string and concat results</p></div>
+              </div>
+              <div class="docblock-bd">
+                <table class="tags">
+                  <tr class="tag">
+                    <th><b>param</b></th>
+                    <td><span class="label radius secondary">Array.&lt;String&gt;</span></td>
+                    <td><code>ret</code></td>
+                    <td></td>
+                  </tr>
+                  <tr class="tag">
+                    <th><b>param</b></th>
+                    <td><span class="label radius secondary">String</span></td>
+                    <td><code>arg</code></td>
+                    <td></td>
+                  </tr>
+                  <tr class="tag">
+                    <th><b>return</b></th>
+                    <td><span class="label radius secondary">Array</span></td>
+                    <td><code></code></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="description"></div>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div class="code">
+              <pre><code class="language-javascript">var reduceGlob = function (ret, arg) {
+    return ret.concat(glob.sync(arg));
+};</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="row flex">
+          <div class="large-6 columns">
+            <div id="makeFilter-" class="docblock">
+              <div class="docblock-hd">
+                <h4><span>makeFilter</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
+                </h4>
+                <div class="summary"><p>Generates an ignore filter method.</p></div>
+              </div>
+              <div class="docblock-bd">
+                <table class="tags">
+                  <tr class="tag">
+                    <th><b>param</b></th>
+                    <td><span class="label radius secondary">Object</span></td>
+                    <td><code>options</code></td>
+                    <td></td>
+                  </tr>
+                  <tr class="tag">
+                    <th><b>return</b></th>
+                    <td><span class="label radius secondary">Function(String):Boolean</span></td>
+                    <td><code></code></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="description"></div>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div class="code">
+              <pre><code class="language-javascript">var makeFilter = function (options) {
+    var ignoreDirs = options.ignoreDirs;
+    var ignoreFiles = options.ignoreFiles;
+
+    return function (item) {
+        return !ignoreDirs.test(path.dirname(item)) &amp;&amp;
+               !ignoreFiles.test(path.basename(item));
+    };
+};</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="row flex">
+          <div class="large-6 columns">
+            <div id="makeRenderer-" class="docblock">
+              <div class="docblock-hd">
+                <h4><span>makeRenderer</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
+                </h4>
+                <div class="summary"><p>Generates a jade template render method.</p></div>
               </div>
               <div class="docblock-bd">
                 <table class="tags">
@@ -269,9 +324,10 @@ var path = require('path');</code></pre>
                     <td></td>
                   </tr>
                   <tr class="tag">
-                    <th><b>returns</b></th>
-                    <td colspan="3">{Function(Object):String}
-                    </td>
+                    <th><b>return</b></th>
+                    <td><span class="label radius secondary">Function(Object):String</span></td>
+                    <td><code></code></td>
+                    <td></td>
                   </tr>
                 </table>
               </div>
@@ -280,7 +336,8 @@ var path = require('path');</code></pre>
           </div>
           <div class="large-6 columns">
             <div class="code">
-              <pre><code class="language-javascript">var parseTemplate = function (template) {
+              <pre><code class="language-javascript">var makeRenderer = function (options) {
+    var template = options.template;
     var data = fs.readFileSync(template, 'utf8');
 
     return jade.compile(data, {
@@ -293,24 +350,24 @@ var path = require('path');</code></pre>
         </div>
         <div class="row flex">
           <div class="large-6 columns">
-            <div id="module-exports-" class="docblock">
+            <div id="makeWriter-" class="docblock">
               <div class="docblock-hd">
-                <h4><span>exports</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">method</span>
+                <h4><span>makeWriter</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
                 </h4>
-                <div class="summary"><p>Public api.</p></div>
+                <div class="summary"><p>Generates a file write method.</p></div>
               </div>
               <div class="docblock-bd">
                 <table class="tags">
                   <tr class="tag">
                     <th><b>param</b></th>
-                    <td><span class="label radius secondary">Array.&lt;String&gt;</span></td>
-                    <td><code>files</code></td>
+                    <td><span class="label radius secondary">Object</span></td>
+                    <td><code>options</code></td>
                     <td></td>
                   </tr>
                   <tr class="tag">
-                    <th><b>param</b></th>
-                    <td><span class="label radius secondary">Object</span></td>
-                    <td><code>options</code></td>
+                    <th><b>return</b></th>
+                    <td><span class="label radius secondary">Function(String,String,Object,Array.&lt;Object&gt;)</span></td>
+                    <td><code></code></td>
                     <td></td>
                   </tr>
                 </table>
@@ -320,17 +377,12 @@ var path = require('path');</code></pre>
           </div>
           <div class="large-6 columns">
             <div class="code">
-              <pre><code class="language-javascript">module.exports = function (files, options) {
-    var index = options.index;
-    var outputDir = options.output;
+              <pre><code class="language-javascript">var makeWriter = function (options) {
     var title = options.title;
-    var template = parseTemplate(options.template);
-    var list = files.sort()
-                    .filter(ignore(options))
-                    .map(parseFile);
+    var outputDir = options.output;
+    var render = makeRenderer(options);
 
-    // Generate file
-    var generate = function (file, base, meta) {
+    return function (file, base, meta, list) {
         // Create path
         var filename = path.join(outputDir, file);
 
@@ -338,38 +390,145 @@ var path = require('path');</code></pre>
         mkdirp.sync(path.dirname(filename));
 
         // Create file
-        fs.writeFileSync(filename, template({
+        fs.writeFileSync(filename, render({
             base: base,
-            meta: meta,
             files: list,
+            meta: meta,
             title: title
         }));
     };
+};</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="row flex">
+          <div class="large-6 columns">
+            <div id="makeHandler-" class="docblock">
+              <div class="docblock-hd">
+                <h4><span>makeHandler</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
+                </h4>
+                <div class="summary"><p>Generates a file handler method which determines what files to write.</p></div>
+              </div>
+              <div class="docblock-bd">
+                <table class="tags">
+                  <tr class="tag">
+                    <th><b>param</b></th>
+                    <td><span class="label radius secondary">Object</span></td>
+                    <td><code>options</code></td>
+                    <td></td>
+                  </tr>
+                  <tr class="tag">
+                    <th><b>return</b></th>
+                    <td><span class="label radius secondary">Function(String,Number,Array.&lt;String&gt;)</span></td>
+                    <td><code></code></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="description"></div>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div class="code">
+              <pre><code class="language-javascript">var makeHandler = function (options) {
+    var index = options.index;
+    var writeFile = makeWriter(options);
 
-    // Determine files to generate
-    var determine = function (meta) {
+    return function (meta, i, list) {
         var originalPath = meta.originalPath;
         var dirname = path.dirname(originalPath);
 
-        // Convert dirname to relative path
+        // Generate index file
+        if (originalPath === index) {
+            writeFile('index.html', '', meta, list);
+        }
+
+        // Convert dirname to relative base path
         if (dirname &amp;&amp; dirname !== '.') {
             dirname = dirname.replace(matchDir, '..') + '/';
         } else {
             dirname = '';
         }
 
-        // Generate index file
-        if (originalPath === index) {
-            generate('index.html', '', meta);
-        }
-
         // Generate corresponding file
-        generate(originalPath + '.html', dirname, meta);
+        writeFile(originalPath + '.html', dirname, meta, list);
     };
-
-    // Determine output files
-    list.forEach(determine);
 };</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="row flex">
+          <div class="large-6 columns">
+            <div id="doxit-" class="docblock">
+              <div class="docblock-hd">
+                <h4><span>doxit</span><span aria-hidden="true">&nbsp;(&nbsp;)</span>&nbsp;<span class="label radius right">function</span>
+                </h4>
+                <div class="summary"><p>Takes a list of file paths or globs and generates documentation files.</p></div>
+              </div>
+              <div class="docblock-bd">
+                <table class="tags">
+                  <tr class="tag">
+                    <th><b>param</b></th>
+                    <td><span class="label radius secondary">Array.&lt;String&gt;</span></td>
+                    <td><code>files</code></td>
+                    <td>List of file paths or globs</td>
+                  </tr>
+                  <tr class="tag">
+                    <th><b>param</b></th>
+                    <td><span class="label radius secondary">Object=</span></td>
+                    <td><code>options</code></td>
+                    <td>An object containing program options</td>
+                  </tr>
+                  <tr class="tag">
+                    <th><b>return</b></th>
+                    <td><span class="label radius secondary">undefined</span></td>
+                    <td><code></code></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="description"></div>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div class="code">
+              <pre><code class="language-javascript">var doxit = function (files, options) {
+    if (!util.isArray(files)) {
+        throw new TypeError('Property `files` must be an Array.');
+    }
+
+    if (options &amp;&amp; typeof options !== 'object') {
+        throw new TypeError('Property `options` must be an Object.');
+    }
+
+    var filterFile = makeFilter(options);
+    var handleFile = makeHandler(options);
+
+    files.reduce(reduceGlob, []) // glob files
+         .filter(filterFile)     // remove ignored
+         .sort()                 // sort by path
+         .map(parseFile)         // parse contents
+         .forEach(handleFile);   // output doc files
+};</code></pre>
+            </div>
+          </div>
+        </div>
+        <div class="row flex">
+          <div class="large-6 columns">
+            <div id="module-exports" class="docblock">
+              <div class="docblock-hd">
+                <h4><span>exports</span>&nbsp;<span class="label radius right success">property</span>
+                </h4>
+                <div class="summary"><p>Export doxit</p></div>
+              </div>
+              <div class="docblock-bd">
+              </div>
+              <div class="description"></div>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div class="code">
+              <pre><code class="language-javascript">module.exports = doxit;</code></pre>
             </div>
           </div>
         </div>
