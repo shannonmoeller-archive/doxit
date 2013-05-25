@@ -41,6 +41,9 @@ Starts a server which hosts the generated test documentation at http://localhost
 Change Log
 ----------
 
+### 1.1.2
+- Fixed issue with path-matching regular expression in Windows.
+
 ### 1.1.1
 - Better abstraction for long-term maintainability. Moved file globbing from cli to core to make JavaScript api more useful.
 
