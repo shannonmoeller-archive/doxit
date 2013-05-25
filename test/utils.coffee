@@ -13,7 +13,7 @@ entities = /&(?!\w+;)/g
  *
  * Examples:
  *
- *     utils.escape('<script></script>') // '&lt;script&gt;&lt;/script&gt;'
+ *     utils.escape '<script></script>' // '&lt;script&gt;&lt;/script&gt;'
  *
  * @param {String} html string to be escaped
  * @return {String} escaped html
