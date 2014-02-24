@@ -11,16 +11,16 @@
     "url": "http://github.com/shannonmoeller/doxit.git"
   },
   "dependencies": {
-    "commander": "*",
-    "copier": "*",
-    "dox": "*",
-    "glob": "*",
-    "marked": "*",
-    "jade": "*",
-    "mkdirp": "*"
+    "commander": "2.1.0",
+    "copier": "0.0.3",
+    "dox": "0.4.4",
+    "glob": "*3.2.8",
+    "marked": "0.3.1",
+    "jade": "1.1.5",
+    "mkdirp": "0.3.5"
   },
   "devDependencies": {
-    "workit": "*"
+    "workit": "1.1.2"
   },
   "scripts": {
     "build": "rm -rf docs && ./bin/doxit -c test/doxit.config.js",

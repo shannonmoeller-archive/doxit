@@ -92,6 +92,7 @@
         </div>
         <div class="row flex">
           <div class="large-6 columns">
+            <id>= comment.ctx && comment.ctx.string.replace(/[^\w\d]+/g, '-')</id>
             <div id="undefined" class="docblock">
               <div class="docblock-hd">
                 <div class="summary"><p>doxit</p></div>
@@ -122,6 +123,7 @@ var cmdr = require('commander');
 var copier = require('copier');
 var fs = require('fs');
 var doxit = require('./doxit');
+var pkg = require('../package.json');
 
 // Split on commas
 var csv = function(string) {
@@ -129,7 +131,7 @@ var csv = function(string) {
 };
 
 // Setup cli
-cmdr.version('1.1.2')
+cmdr.version(pkg.version)
     .usage('[options] (glob ...)')
     .option('-c, --config [file]', 'a javascript or json file containing options to use')
     .option('-d, --ignore-dirs [regex]', 'regex of directories to ignore [\\.git|\\.svn|node_modules]', RegExp, /\.git|\.svn|node_modules/)
