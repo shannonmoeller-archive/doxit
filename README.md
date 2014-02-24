@@ -41,6 +41,9 @@ Starts a server which hosts the generated test documentation at http://localhost
 Change Log
 ----------
 
+### 1.2.1
+- Updated packages, corrected issues, fixed dependency version numbers.
+
 ### 1.1.2
 - Fixed issue with path-matching regular expression in Windows.
 
